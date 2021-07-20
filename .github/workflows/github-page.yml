@@ -14,17 +14,5 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: 2.2.0
-      - run: flutter config --enable-web
-      - run: flutter pub get
-      - run: flutter build web --release
-      - run: |
-          cd build/web
-          git init
-          git config --global user.email "bungabear6422@gmail.com"
-          git config --global user.name "Minjae Son"
-          git status
-          git remote add origin https://github.com/${{ github.repository }}.git
-          git checkout -b gh-pages
-          git add --all
-          git commit -m "Page Update"
-          git push origin gh-pages -f
+      - name: Deploy Flutter web app to github pages
+        uses: erickzanardo/flutter-gh-pages@v2
